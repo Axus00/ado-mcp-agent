@@ -1,0 +1,18 @@
+[project]
+name = "ado_mcp_agent"
+version = "0.1.0"
+description = "Agente MCP para automatización de operaciones"
+authors = [
+    {name = "Fernando", email= "fer.gomez.dev@gmail.com"}
+]
+
+dependencies = [
+    "langchain==0.3.27",
+    "langchain-community==0.3.27",
+    "langchain-core==0.3.72",
+    "langchain-openai==0.3.28",
+    "langgraph==0.6.0",
+    "langgraph-cli==0.3.6",
+    "openai==1.97.1",
+    "python-dotenv==1.1.1"
+]
