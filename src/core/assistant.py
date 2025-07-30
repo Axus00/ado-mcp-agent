@@ -8,11 +8,22 @@ memory = InMemorySaver()
 compiled_graph = graph.compile(checkpointer=memory)
 
 def _assistant():
-    if __name__ == "__main__":
-        prompt = input("👱 Usuario: ")
+    print("Selecciona un asistente virtual: openai, mistralai")
+    llm_choice = input("✅ LLM: ").strip().lower()
 
-        initial_agent_state = AgentState(user_input = prompt)
 
-        final_state = compiled_graph.invoke(initial_agent_state)
+    prompt = input("👱 Usuario: ")
 
-        print("🤖 Asistente: ", final_state["response"])
+    initial_agent_state = AgentState(
+        user_input = prompt, 
+        llm_choice=llm_choice,
+        response='') # type: ignore
+
+    config = {"configurable": {"thread_id": "test"}}
+
+    final_state = compiled_graph.invoke(initial_agent_state, config=config)
+
+    if "error" in final_state:
+        print("❌ Error:", final_state["error"])
+    else:
+        print("🤖 Asistente:", final_state["response"])
